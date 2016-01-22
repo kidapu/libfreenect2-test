@@ -1,0 +1,6 @@
+ofxMultiKinectV2
+ofxTurboJpeg
+ofxBlur
+ofxGui
+ofxCv
+ofxNanoVG

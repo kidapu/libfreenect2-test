@@ -1,0 +1,23 @@
+<kinect_v2_params>
+	<KinectMinDist>547</KinectMinDist>
+	<KinectMaxDist>717</KinectMaxDist>
+	<KinectBlur>0.34</KinectBlur>
+	<cv_min_area>3</cv_min_area>
+	<cv_max_area>220</cv_max_area>
+	<cv_threshold>90</cv_threshold>
+	<cv_persistance>10</cv_persistance>
+	<cv_max_dist>10</cv_max_dist>
+<kinect_v2_params/>
+<scene_mode>0</scene_mode>
+<params>
+		<KinectMinDist>470</KinectMinDist>
+		<KinectMaxDist>800</KinectMaxDist>
+		<KinectBlur>1.22</KinectBlur>
+		<cv_min_area>9</cv_min_area>
+		<cv_max_area>211</cv_max_area>
+		<cv_threshold>76</cv_threshold>
+		<cv_persistance>18</cv_persistance>
+		<cv_max_dist>12</cv_max_dist>
+		<scene_mode>0</scene_mode>
+	</params>
+</kinect_v2_params>
