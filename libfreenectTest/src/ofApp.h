@@ -204,20 +204,44 @@ public:
                     float dw = rect.getWidth();
                     float dh = rect.getHeight();
                     
+                    float z1 = _kinect.getDistanceAt(dx, dy);
+                    float z2 = _kinect.getDistanceAt(dx+dw, dy);
+                    float z3 = _kinect.getDistanceAt(dx+dw, dy+dh);
+                    float z4 = _kinect.getDistanceAt(dx, dy+dh);
+                    
+                    int zcount = 0;
+                    float zsum = 0;
+                    if( 0 < z1 ) { zsum += z1; zcount += 1; }
+                    if( 0 < z2 ) { zsum += z2; zcount += 1; }
+                    if( 0 < z3 ) { zsum += z3; zcount += 1; }
+                    if( 0 < z4 ) { zsum += z4; zcount += 1; }
+                    float zaverage = zsum / zcount;
+   
+//                    cout << " - - - - " << endl;
+//                    cout << dx << "," << dy << "," << dw << "," << dh << endl;
+                    
                     //
                     float cx1, cy1, cx2, cy2, cx3, cy3, cx4, cy4;
-                    _rw.depthToColor(dx, dy, _kinect.getDistanceAt(dx, dy), cx1, cy1);
-                    _rw.depthToColor(dx+dw, dy, _kinect.getDistanceAt(dx+dw, dy), cx2, cy2);
-                    _rw.depthToColor(dx+dw, dy+dh, _kinect.getDistanceAt(dx+dw, dy+dh), cx3, cy3);
-                    _rw.depthToColor(dx, dy+dh, _kinect.getDistanceAt(dx, dy+dh), cx3, cy3);
+                    _rw.depthToColor(dx, dy, zaverage, cx1, cy1);
+                    _rw.depthToColor(dx+dw, dy, zaverage, cx2, cy2);
+                    _rw.depthToColor(dx+dw, dy+dh, zaverage, cx3, cy3);
+                    _rw.depthToColor(dx, dy+dh, zaverage, cx4, cy4);
                     
-                    c2.moveTo(cx1 * Const::COLOR_SCALE, cy1 * Const::COLOR_SCALE);
-                    c2.lineTo(cx2 * Const::COLOR_SCALE, cy2 * Const::COLOR_SCALE);
-                    c2.lineTo(cx3 * Const::COLOR_SCALE, cy3 * Const::COLOR_SCALE);
-                    c2.lineTo(cx4 * Const::COLOR_SCALE, cy4 * Const::COLOR_SCALE);
+                    vector<ofVec2f> points;
+                    if( !isinf(cx1) && !isinf(cy1) ){ points.push_back(ofVec2f(cx1,cy1)); }
+                    if( !isinf(cx2) && !isinf(cy2) ){ points.push_back(ofVec2f(cx2,cy2)); }
+                    if( !isinf(cx3) && !isinf(cy3) ){ points.push_back(ofVec2f(cx3,cy3)); }
+                    if( !isinf(cx4) && !isinf(cy4) ){ points.push_back(ofVec2f(cx4,cy4)); }
+                    
+                    int len = points.size();
+                    for( int i = 0; i < len; i++ )
+                    {
+                        if(i == 0 )c2.moveTo(points[i].x * Const::COLOR_SCALE, points[i].y * Const::COLOR_SCALE);
+                        else c2.lineTo(points[i].x * Const::COLOR_SCALE, points[i].y * Const::COLOR_SCALE);
+                    }
                     c2.closePath();
                     
-//                    cout << " - - - - " << endl;
+//                    cout << " - -  " << endl;
 //                    cout << cx1 << "," << cx1 << endl;
 //                    cout << cx2 << "," << cy2 << endl;
 //                    cout << cx3 << "," << cy3 << endl;
