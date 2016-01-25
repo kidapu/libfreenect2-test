@@ -25,6 +25,8 @@ public:
     
     void depthToColor(int dx, int dy, float dz, float &cx, float &cy)
     {
+        cout << "dx:" << dx << "/ dy:" << dy << "/ dz:" << dz << endl;
+        
         registration->apply(dx, dy, dz, cx, cy);
     }
 
