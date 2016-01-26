@@ -204,20 +204,22 @@ public:
                     float dw = rect.getWidth();
                     float dh = rect.getHeight();
                     
-                    float z1 = _kinect.getDistanceAt(dx, dy);
-                    float z2 = _kinect.getDistanceAt(dx+dw, dy);
-                    float z3 = _kinect.getDistanceAt(dx+dw, dy+dh);
-                    float z4 = _kinect.getDistanceAt(dx, dy+dh);
+//                    float z1 = _kinect.getDistanceAt(dx, dy);
+//                    float z2 = _kinect.getDistanceAt(dx+dw, dy);
+//                    float z3 = _kinect.getDistanceAt(dx+dw, dy+dh);
+//                    float z4 = _kinect.getDistanceAt(dx, dy+dh);
+//                    
+//                    int zcount = 0;
+//                    float zsum = 0;
+//                    if( 0 < z1 ) { zsum += z1; zcount += 1; }
+//                    if( 0 < z2 ) { zsum += z2; zcount += 1; }
+//                    if( 0 < z3 ) { zsum += z3; zcount += 1; }
+//                    if( 0 < z4 ) { zsum += z4; zcount += 1; }
+//                    float zaverage = zsum / zcount;
+
+                    float zaverage = _kinect.getDistanceAt(dx+dw*0.5, dy+dh*0.5)*10.0;
                     
-                    int zcount = 0;
-                    float zsum = 0;
-                    if( 0 < z1 ) { zsum += z1; zcount += 1; }
-                    if( 0 < z2 ) { zsum += z2; zcount += 1; }
-                    if( 0 < z3 ) { zsum += z3; zcount += 1; }
-                    if( 0 < z4 ) { zsum += z4; zcount += 1; }
-                    float zaverage = zsum / zcount;
-   
-//                    cout << " - - - - " << endl;
+                    cout << " - - - - " << endl;
 //                    cout << dx << "," << dy << "," << dw << "," << dh << endl;
                     
                     //
